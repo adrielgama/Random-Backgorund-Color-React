@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
 
 function App() {
+  const [color, setColor] = useState("#000000");
+  const randomColorHEX = (Math.random() * 0xfffff * 1000000).toString(16);
+  const finalColorHEX = "#" + randomColorHEX.slice(0, 6);
+
+  function handleClick(event) {
+    setColor(finalColorHEX);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button
+        style={{ backgroundColor: color }}
+        onClick={handleClick}
+        className="btn-random"
+      >
+        <h2>Clique para mudar cor de fundo!</h2>
+        <div className="bg-random"></div>
+      </button>
     </div>
   );
 }
